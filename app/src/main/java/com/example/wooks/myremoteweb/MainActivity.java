@@ -18,18 +18,19 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    String urlAddr = "http://172.16.24.239:3000/";
+    String urlAddr = "http://13.124.85.66:2326/";
+    String results;
     Button btnNetCon;
     static final LatLng SEOUL = new LatLng(37.56, 126.97);
     static final LatLng SANGMYUNG = new LatLng(37.599464, 126.955664);
-    LatLon temp = new LatLon();
-    private GoogleMap googleMap;
+    LatLng first;
+    LatLng second;
+    static LatLon temp = new LatLon();
+    static GoogleMap googleMap;
     TextView tv;
     ToggleButton tb;
 
@@ -80,11 +81,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
-
-        Marker seoul = googleMap.addMarker(new MarkerOptions().position(SEOUL)
-                .title("Seoul"));
-        Marker sangmyung = googleMap.addMarker(new MarkerOptions().position(SANGMYUNG)
-                .title("SangMyung"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
