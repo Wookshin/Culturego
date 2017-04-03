@@ -1,6 +1,7 @@
 package com.example.wooks.myremoteweb;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -8,29 +9,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
-
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    String urlAddr = "http://13.124.85.66:2326/";
+public class MainActivity extends AppCompatActivity{
+    String urlAddr = "http://192.168.0.11:2323/";
     String results;
     Button btnNetCon;
-    static final LatLng SEOUL = new LatLng(37.56, 126.97);
-    static final LatLng SANGMYUNG = new LatLng(37.599464, 126.955664);
+    EditText editText;
     LatLng first;
     LatLng second;
-    static LatLon temp = new LatLon();
-    static GoogleMap googleMap;
+    static LatLon temp = new LatLon(37.602910, 126.955145);
     TextView tv;
     ToggleButton tb;
 
@@ -39,12 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MapFragment mapFragment =  (MapFragment) getFragmentManager().findFragmentById(R.id.fm_map_01);
-        mapFragment.getMapAsync(this);
-        ViewGroup.LayoutParams params = mapFragment.getView().getLayoutParams();
-        params.height = 900;
-        mapFragment.getView().setLayoutParams(params);
-
+        editText = (EditText) findViewById(R.id.et_type);
         btnNetCon = (Button) findViewById(R.id.bt_network_con);
         tv = (TextView) findViewById(R.id.textView2);
         tv.setText("위치정보 미수신중");
@@ -78,13 +65,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    @Override
-    public void onMapReady(GoogleMap map) {
-        googleMap = map;
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-    }
-
     public void onClick(View v){
         switch(v.getId()){
             case R.id.bt_network_con:
@@ -94,15 +74,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onBtnConnect() {
+        Intent intent = new Intent(this, MapAcitivity.class);
+        String type = editText.getText().toString();
+        urlAddr = urlAddr + type;
         NetWorkAsyncTask netWorkAsyncTask = new NetWorkAsyncTask(MainActivity.this, urlAddr);
         netWorkAsyncTask.execute(temp);
+        urlAddr = "http://192.168.0.11:2323/";
+        startActivity(intent);
     }
 
     private final LocationListener mLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             //여기서 위치값이 갱신되면 이벤트가 발생한다.
             //값은 Location 형태로 리턴되며 좌표 출력 방법은 다음과 같다.
-
             Log.d("test", "onLocationChanged, location:" + location);
             double longitude = location.getLongitude(); //경도
             double latitude = location.getLatitude();   //위도

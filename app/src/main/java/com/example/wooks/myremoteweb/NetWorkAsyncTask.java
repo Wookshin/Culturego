@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,8 +21,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.example.wooks.myremoteweb.MainActivity.googleMap;
 import static com.example.wooks.myremoteweb.MainActivity.temp;
+import static com.example.wooks.myremoteweb.MapAcitivity.googleMap;
 
 /**
  * Created by Wooks on 2017-02-25.
@@ -53,10 +54,6 @@ public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
     protected String doInBackground(LatLon... params) {
         Log.i(TAG, "doInBackground()");
         String data = "";
-//        StringBuffer sb = new StringBuffer();
-//        InputStream is = null;
-//        InputStreamReader isr = null;
-//        BufferedReader br = null;
 
         try {
             URL url = new URL(mAddr);
@@ -98,7 +95,6 @@ public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
         catch(Exception e){
             e.printStackTrace();
@@ -116,23 +112,22 @@ public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         Log.e("TAG", result);
-        JSONObject obj = null;
-        LatLng first = null;
-        LatLng second = null;
-        LatLng current = null;
-        String first_name = null, second_name = null;
+        JSONArray jsonarray = null;
         try {
-            obj = new JSONObject(result);
-            first = new LatLng(obj.getDouble("first_lat"), obj.getDouble("first_lng"));
-            first_name = obj.getString("first_name");
-            second = new LatLng(obj.getDouble("second_lat"), obj.getDouble("second_lng"));
-            second_name = obj.getString("second_name");
+            jsonarray = new JSONArray(result);
+            for(int i=0; i<jsonarray.length(); i++)
+            {
+                JSONObject jsonobject = jsonarray.getJSONObject(i);
+                LatLng latlng = new LatLng(jsonobject.getJSONObject("geometry").getJSONObject("location").getDouble("lat"),
+                        jsonobject.getJSONObject("geometry").getJSONObject("location").getDouble("lng"));
+                googleMap.addMarker(new MarkerOptions().position(latlng).title(jsonobject.getString("name")));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        LatLng current = null;
         current = new LatLng(temp.getLat(), temp.getLon());
-        googleMap.addMarker(new MarkerOptions().position(first).title(first_name));
-        googleMap.addMarker(new MarkerOptions().position(second).title(second_name));
         googleMap.addMarker(new MarkerOptions().position(current).title("Current"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(current));
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));

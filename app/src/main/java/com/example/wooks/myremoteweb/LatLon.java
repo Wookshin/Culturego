@@ -6,7 +6,10 @@ package com.example.wooks.myremoteweb;
 
 public class LatLon {
     private double lat, lon;
-
+    LatLon(double lat, double lon){
+        this.lat = lat;
+        this.lon = lon;
+    }
     protected double getLat() {
         return lat;
     }
