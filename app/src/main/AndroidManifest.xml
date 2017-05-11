@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name = ".MapAcitivity"></activity>
-        <meta-data android:value="AIzaSyC8RmE0TL6x4OENtVg3eyZfYReOcuEkbQw"
-            android:name="com.google.android.maps.v2.API_KEY" />
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyC8RmE0TL6x4OENtVg3eyZfYReOcuEkbQw"/>
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
     </application>

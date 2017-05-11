@@ -1,67 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.wooks.myremoteweb.MainActivity">
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="5dp"
+android:paddingLeft="0dp"
+android:paddingRight="0dp"
+android:paddingTop="10dp"
+android:background="#ffffff"
+tools:context="com.example.wooks.myremoteweb.MainActivity">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="to know location using phone"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-
-    <Button
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Network!"
-        android:onClick="onClick"
-        android:id="@+id/bt_network_con"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="18dp" />
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:id="@+id/view" />
 
     <ToggleButton
         android:id="@+id/toggle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1550px"
         android:textOff="start to recieve loc"
         android:textOn="finish to recieve loc"
-        android:layout_above="@+id/bt_network_con"
         android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="1100px"
+        android:layout_height="150px"
+        android:layout_marginTop="1400px"
+        android:text="http://13.124.85.66:2300/"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="result"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_above="@+id/toggle1"
+        android:textSize="9pt"
+        android:layout_marginTop="1550px"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <!--android:background="@drawable/border_listview"/>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="1420px"
+        android:background="@android:color/black" />
+
+    <ListView
+        android:id="@+id/listview1"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:layout_width="match_parent"
+        android:layout_height="1350px"
+        android:layout_below="@+id/view"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="museum, art, spa, movie, park "
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView1"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp" />
-
-    <EditText
-        android:layout_width="400px"
-        android:layout_height="150px"
-        android:id="@+id/et_type"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/toggle1"
-        android:layout_marginTop="169dp" />
 
 </RelativeLayout>
