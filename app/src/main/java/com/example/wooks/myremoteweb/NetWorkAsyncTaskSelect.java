@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -16,19 +15,17 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.example.wooks.myremoteweb.MapAcitivity.results;
-
 /**
  * Created by Wooks on 2017-02-25.
  */
 
-public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
-    final static String TAG = "NetWorkAsyncTask";
+public class NetWorkAsyncTaskSelect extends AsyncTask<JSONObject, Void, String> {
+    final static String TAG = "NetWorkAsyncTaskSelect";
     Context mContext = null;
     String mAddr;
     ProgressDialog dialog = null;
 
-    public NetWorkAsyncTask(Context c, String a) {
+    public NetWorkAsyncTaskSelect(Context c, String a) {
         mContext = c;
         mAddr = a;
     }
@@ -45,9 +42,10 @@ public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
     }
 
     @Override
-    protected String doInBackground(LatLon... params) {
+    protected String doInBackground(JSONObject... params) {
         Log.i(TAG, "doInBackground()");
         String data = "";
+        Log.d("OKOK", String.valueOf(params[0]));
 
         try {
             URL url = new URL(mAddr);
@@ -63,31 +61,17 @@ public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
             // 서버에게 웹에서 <Form>으로 값이 넘어온 것과 같은 방식으로 처리하라는 걸 알려준다
             //connection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
             connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-            try {
-                JSONObject parent = new JSONObject();
-                JSONObject child = new JSONObject();
-                child.put("latitude", params[0].getLat());
-                child.put("longitude", params[0].getLon());
-                parent.put("sinabro",child);
-                Log.d("output", parent.toString(2));
-
-                OutputStream os = connection.getOutputStream(); // 서버로 보내기 위한 출력 스트림
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8")); // UTF-8로 전송
-                bw.write(parent.toString()); // 매개변수 전송
-                bw.flush();
-                bw.close();
-                os.close();
-
-                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) { // 연결에 성공한 경우
-                    String line;
-                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream())); // 서버의 응답을 읽기 위한 입력 스트림
-
-                    while ((line = br.readLine()) != null) // 서버의 응답을 읽어옴
-                        data += line;
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            OutputStream os = connection.getOutputStream(); // 서버로 보내기 위한 출력 스트림
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8")); // UTF-8로 전송
+            bw.write(params[0].toString()); // 매개변수 전송
+            bw.flush();
+            bw.close();
+            os.close();
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) { // 연결에 성공한 경우
+                String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream())); // 서버의 응답을 읽기 위한 입력 스트림
+                while ((line = br.readLine()) != null) // 서버의 응답을 읽어옴
+                    data += line;
             }
         }
         catch(Exception e){
@@ -106,7 +90,6 @@ public class NetWorkAsyncTask extends AsyncTask<LatLon, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         Log.e("CHECK", result);
-        results = result;
 //        JSONArray jsonarray = null;
 //        try {
 //            jsonarray = new JSONArray(result);

@@ -1,19 +1,17 @@
 package com.example.wooks.myremoteweb;
 
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by Wooks on 2017-05-08.
  */
 
 public class ListViewItem {
-    private Drawable iconDrawable ;
+    //private Drawable iconDrawable ;
     private String titleStr ;
     private String descStr ;
 
-    public void setIcon(Drawable icon) {
-        iconDrawable = icon ;
-    }
+//    //public void setIcon(Drawable icon) {
+//        iconDrawable = icon ;
+//    }
     public void setTitle(String title) {
         titleStr = title ;
     }
@@ -21,9 +19,9 @@ public class ListViewItem {
         descStr = desc ;
     }
 
-    public Drawable getIcon() {
-        return this.iconDrawable ;
-    }
+//    public Drawable getIcon() {
+//        return this.iconDrawable ;
+//    }
     public String getTitle() {
         return this.titleStr ;
     }

@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MapAcitivity"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="-10dp"
+        android:paddingTop="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:id="@+id/title_view"/>
 
     <fragment
         android:id="@+id/fm_map_01"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_alignParentStart="true" />
+        android:layout_width="360dp"
+        android:layout_height="595dp"
+        android:layout_marginTop="50dp"
+        android:name="com.google.android.gms.maps.MapFragment" />
 
-    <ToggleButton
+    <Button
         android:id="@+id/toggle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff="go!!"
-        android:textOn="ing.." />
+        android:layout_marginTop="540dp"
+        android:layout_marginLeft="285dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:text="Go!"
+        android:background="@drawable/round_button"/>
 
-</LinearLayout>
+</RelativeLayout>

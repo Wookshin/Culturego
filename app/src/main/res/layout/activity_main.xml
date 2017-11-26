@@ -4,58 +4,76 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/activity_main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:paddingBottom="5dp"
-android:paddingLeft="0dp"
-android:paddingRight="0dp"
-android:paddingTop="10dp"
-android:background="#ffffff"
+android:paddingBottom="0dp"
+android:paddingLeft="-5dp"
+android:paddingRight="-5dp"
+android:paddingTop="0dp"
+android:layout_margin="0dp"
+android:minHeight="0dp"
+android:minWidth="0dp"
+android:includeFontPadding="false"
+android:background="#ff0000"
 tools:context="com.example.wooks.myremoteweb.MainActivity">
 
-    <View
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/black"
-        android:id="@+id/view" />
+        android:layout_height="310dp"
+        android:id="@+id/list1"/>
 
-    <ToggleButton
-        android:id="@+id/toggle1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1550px"
-        android:textOff="start to recieve loc"
-        android:textOn="finish to recieve loc"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="1100px"
-        android:layout_height="150px"
-        android:layout_marginTop="1400px"
-        android:text="http://13.124.85.66:2300/"
-        android:layout_alignParentEnd="true"/>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="result"
-        android:textSize="9pt"
-        android:layout_marginTop="1550px"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <!--android:background="@drawable/border_listview"/>-->
-    <View
+    <ImageView
+        android:layout_marginTop="310dp"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="1420px"
-        android:background="@android:color/black" />
+        android:layout_height="310dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:id="@+id/list2" />
 
-    <ListView
-        android:id="@+id/listview1"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:layout_width="match_parent"
-        android:layout_height="1350px"
-        android:layout_below="@+id/view"
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:text="+"
+        android:background="@drawable/round_button"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="12dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
+    <ToggleButton
+        android:id="@+id/tb1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:textOff="GPS"
+        android:textOn="GPS"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/round_button"
+        android:layout_marginEnd="17dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
+
+    <!---
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black"
+            android:id="@+id/view" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="1420px"
+            android:background="@android:color/black" />
+
+           -->

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="-10dp"
+        android:paddingTop="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:id="@+id/title_view"/>
+
+    <ImageView
+        android:layout_marginTop="-15dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:id="@+id/way_view"/>
+
+</LinearLayout>
